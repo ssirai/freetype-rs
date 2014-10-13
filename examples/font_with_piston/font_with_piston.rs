@@ -1,6 +1,5 @@
 #![feature(globs)]
 
-extern crate graphics;
 extern crate freetype;
 extern crate piston;
 
@@ -27,7 +26,7 @@ fn render_text(face: &Face, gl: &mut Gl, c: &Context, text: &str) {
     let mut x = 0;
     let mut y = 0;
     for ch in text.chars() {
-        face.load_char(ch as u64, ft::face::Render).unwrap();
+        face.load_char(ch as u64, ft::face::RENDER).unwrap();
         let g = face.glyph();
 
         let texture = Texture::from_memory_alpha(g.bitmap().buffer(), g.bitmap().width() as u32, g.bitmap().rows() as u32).unwrap();

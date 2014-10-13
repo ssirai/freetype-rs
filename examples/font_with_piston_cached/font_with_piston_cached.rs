@@ -1,6 +1,5 @@
 #![feature(globs)]
 
-extern crate graphics;
 extern crate freetype;
 extern crate piston;
 
@@ -39,7 +38,7 @@ fn render_text(buffer: &mut HashMap<char, Character>, face: &Face, gl: &mut Gl, 
             load_character(buffer, face, ch);
             std::io::println(format!("Loaded char {}", ch).as_slice());
         }
-        let character = buffer.get(&ch);
+        let character = buffer.index(&ch);
 
         c.trans((x + character.bitmap_glyph.left()) as f64, (y - character.bitmap_glyph.top()) as f64).image(&character.texture).rgb(0.0, 0.0, 0.0).draw(gl);
 
@@ -50,7 +49,7 @@ fn render_text(buffer: &mut HashMap<char, Character>, face: &Face, gl: &mut Gl, 
 }
 
 fn load_character(buffer: &mut HashMap<char, Character>, face: &Face, ch: char) {
-    face.load_char(ch as u64, ft::face::Default).unwrap();
+    face.load_char(ch as u64, ft::face::DEFAULT).unwrap();
     let glyph = face.glyph().get_glyph().unwrap();
     let bitmap_glyph = glyph.to_bitmap(ft::render_mode::Normal, None).unwrap();
     let bitmap = bitmap_glyph.bitmap();

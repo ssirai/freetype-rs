@@ -13,10 +13,6 @@ path = "./font_with_piston_cached.rs"
 
 path = "../../"
 
-[dependencies.graphics]
-
-git = "https://github.com/pistondevelopers/rust-graphics"
-
 [dependencies.piston]
 
 git = "https://github.com/pistondevelopers/piston/"
